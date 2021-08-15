@@ -1,0 +1,45 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:4.0.4'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+group 'me.legit'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+compileJava.options.encoding = 'UTF-8'
+
+mainClassName = 'me.legit.APICore'
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compile 'com.nulab-inc:zxcvbn:1.2.7'
+    compile 'com.google.firebase:firebase-admin:6.8.1'
+    compile 'io.javalin:javalin:3.0.0'
+    compile 'com.squareup.okhttp3:okhttp:3.14.2'
+    compile 'egulias:EmailValidator4J:1.0.0'
+    compile 'io.lettuce:lettuce-core:5.1.7.RELEASE'
+    compile 'io.sentry:sentry:1.7.22'
+    compile 'org.slf4j:slf4j-simple:1.7.25'
+    compile 'org.json:json:20180813'
+
+    testCompile 'junit:junit:4.12'
+}
+
+task stage {
+    dependsOn shadowJar
+}
